@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <!-- Base URL -->
+    <base href="/shibam/" />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="سابر نيوز" />
+
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json" />
+
+    <title>سابر نيوز |  الخبر بدقة</title>
+    <meta name="description" content="سابر نيوز | تغطية إخبارية شاملة على مدار الساعة | متابعة دقيقة لأبرز الأخبار والتطورات في العالم العربي |  تقارير | تحليلات | أحدث المستجدات أولًا بأول">
+    <meta name="author" content="Saber News" />
+
+    <!-- OG & Twitter -->
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/4p9e4L4x1OZXGGggh6SBArEgizo1/social-images/social-1775533687851-٢٠٢٦٠٤٠٧_٠٦١٧٠٢_(3).webp">
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://sabernews.app" />
+    
+    
+    
+    
+    <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/4p9e4L4x1OZXGGggh6SBArEgizo1/social-images/social-1775533687851-٢٠٢٦٠٤٠٧_٠٦١٧٠٢_(3).webp">
+    <meta property="og:title" content="سابر نيوز |  الخبر بدقة">
+  <meta name="twitter:title" content="سابر نيوز |  الخبر بدقة">
+  <meta property="og:description" content="سابر نيوز | تغطية إخبارية شاملة على مدار الساعة | متابعة دقيقة لأبرز الأخبار والتطورات في العالم العربي |  تقارير | تحليلات | أحدث المستجدات أولًا بأول">
+  <meta name="twitter:description" content="سابر نيوز | تغطية إخبارية شاملة على مدار الساعة | متابعة دقيقة لأبرز الأخبار والتطورات في العالم العربي |  تقارير | تحليلات | أحدث المستجدات أولًا بأول">
+</head>
+  <body>
+    <div id="root"></div>
+    <script>
+      // Clear old service worker caches from previous base path
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(regs => {
+          regs.forEach(r => {
+            if (r.active && r.active.scriptURL.includes('/sw.js') && !r.active.scriptURL.includes('/shibam/')) {
+              r.unregister();
+              caches.keys().then(keys => keys.forEach(k => caches.delete(k)));
+            }
+          });
+        });
+      }
+    </script>
+    <script type="module" src="src/main.tsx"></script>
+  </body>
+</html>

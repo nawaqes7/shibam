@@ -1,0 +1,1 @@
+ALTER TABLE public.radio_stations ADD COLUMN IF NOT EXISTS city text DEFAULT NULL;

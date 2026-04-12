@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 215 70% 18%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 70% 18%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 70% 18%;
+
+    --primary: 210 65% 38%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 25% 93%;
+    --secondary-foreground: 215 70% 18%;
+
+    --muted: 210 20% 93%;
+    --muted-foreground: 210 15% 47%;
+
+    --accent: 22 82% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 210 65% 38%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 215 70% 12%;
+    --sidebar-foreground: 210 20% 90%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 215 70% 18%;
+    --sidebar-accent: 215 55% 20%;
+    --sidebar-accent-foreground: 210 20% 90%;
+    --sidebar-border: 215 50% 22%;
+    --sidebar-ring: 210 65% 50%;
+
+    /* Custom tokens */
+    --navy: 215 70% 18%;
+    --navy-light: 215 50% 28%;
+    --urgent-orange: 22 82% 50%;
+    --saber-blue: 210 65% 38%;
+    --saber-blue-deep: 215 70% 18%;
+    --saber-orange: 22 82% 50%;
+    --body-text: 215 25% 27%;
+    --border-subtle: 0 0% 0% / 0.06;
+    --card-shadow: 0 0 0 1px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.02), 0 10px 15px -3px rgba(0,0,0,0.03);
+    --card-shadow-hover: 0 0 0 1px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.04), 0 20px 25px -5px rgba(0,0,0,0.05);
+    --ease: cubic-bezier(0.2, 0, 0, 1);
+
+    /* Admin dark tokens */
+    --admin-bg: 215 70% 6%;
+    --admin-surface: 215 55% 10%;
+    --admin-surface-hover: 215 45% 14%;
+    --admin-border: 215 40% 18%;
+    --admin-text: 210 20% 90%;
+    --admin-text-muted: 210 16% 55%;
+  }
+
+  .dark {
+    --background: 215 70% 6%;
+    --foreground: 210 20% 98%;
+    --card: 215 55% 10%;
+    --card-foreground: 210 20% 98%;
+    --popover: 215 55% 10%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 210 65% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 215 40% 16%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 215 40% 16%;
+    --muted-foreground: 210 16% 55%;
+    --accent: 22 82% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 215 40% 18%;
+    --input: 215 40% 18%;
+    --ring: 210 65% 50%;
+    --sidebar-background: 215 70% 5%;
+    --sidebar-foreground: 210 20% 90%;
+    --sidebar-primary: 210 65% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 215 50% 12%;
+    --sidebar-accent-foreground: 210 20% 90%;
+    --sidebar-border: 215 40% 15%;
+    --sidebar-ring: 210 65% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    direction: rtl;
+  }
+
+  body {
+    @apply bg-background text-foreground font-arabic;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+    color: hsl(var(--foreground));
+  }
+
+  p {
+    text-wrap: pretty;
+    line-height: 1.7;
+    color: hsl(var(--body-text));
+  }
+}
+
+@layer components {
+  .news-card {
+    @apply relative bg-card rounded-lg cursor-pointer transition-all duration-200;
+    box-shadow: var(--card-shadow);
+  }
+  .news-card:hover {
+    box-shadow: var(--card-shadow-hover);
+    transform: translateY(-2px);
+  }
+
+  .section-chip {
+    @apply px-4 py-2 rounded text-sm font-medium transition-all duration-200 whitespace-nowrap;
+    background: hsl(0 0% 100% / 0.5);
+    backdrop-filter: blur(8px);
+  }
+  .section-chip:hover, .section-chip.active {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  .skeleton-pulse {
+    @apply bg-muted rounded animate-pulse;
+  }
+
+  .admin-surface {
+    background: hsl(var(--admin-surface));
+    border: 1px solid hsl(var(--admin-border));
+    @apply rounded-lg;
+  }
+
+  .admin-input {
+    background: hsl(var(--admin-bg));
+    border: 1px solid hsl(var(--admin-border));
+    color: hsl(var(--admin-text));
+    @apply rounded px-4 py-3 text-lg w-full outline-none transition-all duration-200;
+  }
+  .admin-input:focus {
+    border-color: hsl(var(--sidebar-ring));
+    box-shadow: 0 0 0 3px hsl(var(--sidebar-ring) / 0.15);
+  }
+
+  .btn-admin-primary {
+    @apply px-6 py-3 rounded font-semibold text-sm transition-all duration-200;
+    background: linear-gradient(135deg, hsl(210 65% 38%), hsl(210 65% 50%));
+    color: white;
+  }
+  .btn-admin-primary:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 4px 12px hsl(210 65% 38% / 0.3);
+  }
+
+  .live-badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-bold;
+    background: hsl(var(--accent));
+    color: white;
+    animation: live-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes live-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  .sticky-header {
+    @apply sticky top-0 z-50 transition-all duration-300;
+    backdrop-filter: blur(12px);
+    background: hsl(var(--background) / 0.85);
+  }
+
+  .text-urgent {
+    color: hsl(var(--accent));
+  }
+
+  .bg-urgent {
+    background-color: hsl(var(--accent));
+  }
+}
+
+/* Scrollbar hiding for section bar */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
