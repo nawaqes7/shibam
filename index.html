@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
   <head>
     <!-- Base URL -->
-    <base href="/shibam/" />
+    <base href="/" />
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -36,11 +36,11 @@
   <body>
     <div id="root"></div>
     <script>
-      // Clear old service worker caches from previous base path
+      // Clear old service worker caches
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then(regs => {
           regs.forEach(r => {
-            if (r.active && r.active.scriptURL.includes('/sw.js') && !r.active.scriptURL.includes('/shibam/')) {
+            if (r.active && r.active.scriptURL.includes('/sw.js')) {
               r.unregister();
               caches.keys().then(keys => keys.forEach(k => caches.delete(k)));
             }
