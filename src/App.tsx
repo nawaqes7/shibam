@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
@@ -6,16 +7,16 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import AdminLogin from "./pages/AdminLogin";
-import AdminLayout from "./components/AdminLayout";
-import AdminDashboard from "./pages/AdminDashboard";
-import AdminArticles from "./pages/AdminArticles";
-import AdminAddArticle from "./pages/AdminAddArticle";
-import AdminSources from "./pages/AdminSources";
-import AdminAiTools from "./pages/AdminAiTools";
-import AdminTrending from "./pages/AdminTrending";
-import AdminSettings from "./pages/AdminSettings";
-import AdminRadio from "./pages/AdminRadio";
+const AdminLogin = lazy(() => import("./pages/AdminLogin"));
+const AdminLayout = lazy(() => import("./components/AdminLayout"));
+const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
+const AdminArticles = lazy(() => import("./pages/AdminArticles"));
+const AdminAddArticle = lazy(() => import("./pages/AdminAddArticle"));
+const AdminSources = lazy(() => import("./pages/AdminSources"));
+const AdminAiTools = lazy(() => import("./pages/AdminAiTools"));
+const AdminTrending = lazy(() => import("./pages/AdminTrending"));
+const AdminSettings = lazy(() => import("./pages/AdminSettings"));
+const AdminRadio = lazy(() => import("./pages/AdminRadio"));
 import AdminQuickAccess from "./components/AdminQuickAccess";
 import ArticlePage from "./pages/ArticlePage";
 import NewsArchive from "./pages/NewsArchive";
@@ -32,8 +33,9 @@ const AdminGuard = ({ children }: { children: React.ReactNode }) => {
 const App = () => (
   <ErrorBoundary>
   <HelmetProvider>
-  <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <Suspense fallback={<div className="flex min-h-screen items-center justify-center bg-background text-sm font-bold text-muted-foreground">جاري تحميل الصفحة…</div>}>
       <Toaster />
       <Sonner />
         <BrowserRouter basename={import.meta.env.BASE_URL}>
@@ -63,7 +65,8 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-    </TooltipProvider>
+      </Suspense>
+      </TooltipProvider>
   </QueryClientProvider>
   </HelmetProvider>
   </ErrorBoundary>
