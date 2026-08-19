@@ -113,6 +113,34 @@ serve(async (req) => {
 
     if (action === "fetch_details") {
       if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
+
+      let proxiedArticleText = content || "";
+      if (articleUrl) {
+        try {
+          const parsed = new URL(articleUrl);
+          if (!["http:", "https:"].includes(parsed.protocol)) throw new Error("Invalid article URL");
+          const sourceResponse = await fetch(parsed.href, {
+            headers: { "User-Agent": "Mozilla/5.0 (compatible; Alqiada24Bot/1.0)" },
+            signal: AbortSignal.timeout(12000),
+          });
+          if (sourceResponse.ok) {
+            const html = await sourceResponse.text();
+            const extracted = html
+              .replace(/<(script|style|nav|footer|header|aside|iframe)[^>]*>[\s\S]*?<\/\1>/gi, " ")
+              .replace(/<[^>]+>/g, " ")
+              .replace(/&nbsp;/gi, " ")
+              .replace(/&amp;/gi, "&")
+              .replace(/&quot;/gi, '"')
+              .replace(/&#39;/gi, "'")
+              .replace(/\s+/g, " ")
+              .trim();
+            if (extracted.length > 100) proxiedArticleText = extracted.slice(0, 8000);
+          }
+        } catch (proxyError) {
+          console.warn("Article proxy fetch failed; using stored content", proxyError);
+        }
+      }
+
       const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
         method: "POST",
         headers: {
@@ -123,7 +151,7 @@ serve(async (req) => {
           model: "google/gemini-3-flash-preview",
           messages: [
             { role: "system", content: "أنت باحث إخباري. ابحث عن تفاصيل إضافية ومعلومات مرتبطة بالموضوع التالي من مصادر إخبارية موثوقة. قدم المعلومات كنص فقط بدون تواريخ أو رموز تقنية." },
-            { role: "user", content: `ابحث عن تفاصيل إضافية حول هذا الموضوع:\n\nالعنوان: ${title || ""}\nالمحتوى: ${(content || "").substring(0, 1000)}\n\nقدم معلومات إضافية وتفاصيل مرتبطة من مصادر مختلفة.` },
+            { role: "user", content: `ابحث عن تفاصيل إضافية حول هذا الموضوع:\n\nالعنوان: ${title || ""}\nالمحتوى المستخرج عبر البروكسي: ${proxiedArticleText.substring(0, 8000)}\n\nقدم معلومات إضافية وتفاصيل مرتبطة من مصادر مختلفة، واكتب نصًا عربيًا نظيفًا بدون رموز تقنية أو روابط خام.` },
           ],
           stream: true,
         }),

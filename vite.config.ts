@@ -7,8 +7,9 @@ import { VitePWA } from "vite-plugin-pwa";
 export default defineConfig(({ mode }) => ({
   base: process.env.GITHUB_ACTIONS ? "/shibam/" : "/",
   server: {
-    host: "::",
+    host: "0.0.0.0",
     port: 8080,
+    allowedHosts: true,
     hmr: {
       overlay: false,
     },

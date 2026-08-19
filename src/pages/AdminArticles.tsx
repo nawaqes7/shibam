@@ -252,7 +252,7 @@ const AdminArticles = () => {
     try {
       let text = "";
       await streamAI(
-        { action: "fetch_details", title: editData.title, content: editData.content },
+        { action: "fetch_details", title: editData.title, content: editData.content, url: editData.url },
         (delta) => { text += delta; setDetailsResult(text); }
       );
     } catch (e: any) {

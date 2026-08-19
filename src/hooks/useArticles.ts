@@ -42,26 +42,26 @@ export function useArticles(language: string = "ar", page: number = 1) {
       const from = (page - 1) * PAGE_SIZE;
       const to = from + PAGE_SIZE - 1;
 
-      // Only show articles from last 48 hours
-      const cutoff = new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString();
-
       const { data, error, count } = await supabase
         .from("articles")
         .select("*", { count: "exact" })
         .eq("language", language)
         .eq("is_published", true)
-        .gte("published_at", cutoff)
-        .order("published_at", { ascending: false })
+        .order("published_at", { ascending: false, nullsFirst: false })
+        .order("created_at", { ascending: false })
         .range(from, to);
 
       if (error) throw error;
       
-      // Deduplicate by title
-      const seen = new Set<string>();
+      // Deduplicate by canonical URL first, then normalized title.
+      const seenUrls = new Set<string>();
+      const seenTitles = new Set<string>();
       const unique = (data || []).filter((a) => {
-        const key = a.title.trim().toLowerCase();
-        if (seen.has(key)) return false;
-        seen.add(key);
+        const urlKey = String(a.url || "").trim().toLowerCase().replace(/\/$/, "");
+        const titleKey = String(a.title || "").trim().toLowerCase().replace(/[\s\u064B-\u065F]+/g, " ");
+        if ((urlKey && seenUrls.has(urlKey)) || (titleKey && seenTitles.has(titleKey))) return false;
+        if (urlKey) seenUrls.add(urlKey);
+        if (titleKey) seenTitles.add(titleKey);
         return true;
       });
       
@@ -84,7 +84,7 @@ export function useArticles(language: string = "ar", page: number = 1) {
     const channelName = `articles-realtime-${language}-${page}`;
     const channel = supabase
       .channel(channelName)
-      .on("postgres_changes", { event: "*", schema: "public", table: "articles" }, () => {
+      .on("postgres_changes", { event: "*", schema: "public", table: "articles", filter: `language=eq.${language}` }, () => {
         fetchArticles();
       })
       .subscribe();
