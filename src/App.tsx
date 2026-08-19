@@ -25,7 +25,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 const queryClient = new QueryClient();
 
 const AdminGuard = ({ children }: { children: React.ReactNode }) => {
-  const isAdmin = sessionStorage.getItem("saber_admin") === "true";
+  const isAdmin = sessionStorage.getItem("alqiada24_admin") === "true";
   if (!isAdmin) return <Navigate to="/admin/login" replace />;
   return <>{children}</>;
 };

@@ -31,7 +31,7 @@ const AdminLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleLogout = () => {
-    sessionStorage.removeItem("saber_admin");
+    sessionStorage.removeItem("alqiada24_admin");
     navigate("/admin/login");
   };
 
@@ -46,7 +46,7 @@ const AdminLayout = () => {
       >
         <div className="p-5 flex items-center justify-between">
           <h2 className="text-lg font-bold" style={{ color: "hsl(var(--admin-text))" }}>
-            سابر <span className="text-accent">نيوز</span>
+            القيادة <span className="text-accent">24</span>
           </h2>
           <button onClick={() => setSidebarOpen(false)} className="lg:hidden" style={{ color: "hsl(var(--admin-text-muted))" }}>
             <X className="w-5 h-5" />

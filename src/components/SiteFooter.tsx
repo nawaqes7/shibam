@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import saberLogo from "@/assets/saber-news-logo-transparent.png";
 
 const SiteFooter = () => {
   const [time, setTime] = useState(new Date());
@@ -35,10 +34,10 @@ const SiteFooter = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-3">
-              <img src={saberLogo} alt="سابر نيوز" className="h-12 w-auto brightness-0 invert" />
+              <div className="flex items-center gap-2"><span className="grid h-12 w-12 place-items-center rounded-xl bg-accent text-lg font-black text-accent-foreground">24</span><span className="text-2xl font-black">القيادة <span className="text-accent">24</span></span></div>
             </div>
             <p className="text-sm text-primary-foreground/70 max-w-md leading-relaxed">
-              سابر نيوز، الوجه الإعلامي الجديد والموثوق لكل ما يهمك نغطي الأخبار السياسية، الاقتصادية، الصحية، والرياضية بتقارير حصرية، تحقيقات عميقة، وتحليلات خبيرة مباشرة من صناع الأحداث.
+              القيادة 24، منصة إخبارية عربية مستقلة وموثوقة، نغطي الأخبار السياسية والاقتصادية والصحية والرياضية بتقارير واضحة وتحليلات عميقة.
             </p>
           </div>
           <div>
@@ -54,7 +53,7 @@ const SiteFooter = () => {
           <div>
             <h4 className="font-semibold mb-3 text-sm">تواصل معنا</h4>
             <ul className="space-y-2 text-sm text-primary-foreground/60">
-              <li>info@sabernews.com</li>
+              <li>info@alqiada24.com</li>
               <li>تويتر / إكس</li>
               <li>فيسبوك</li>
               <li>يوتيوب</li>
@@ -64,7 +63,7 @@ const SiteFooter = () => {
 
         <div className="border-t border-primary-foreground/10 mt-8 pt-6 space-y-4">
           <div className="text-center">
-            <h3 className="text-xl font-bold text-accent">سابر نيوز</h3>
+            <h3 className="text-xl font-bold text-accent">القيادة 24</h3>
             <p className="text-sm text-primary-foreground/60 mt-1">
               رئيس التحرير / عبدالملك حامد الكوكباني
             </p>
@@ -82,7 +81,7 @@ const SiteFooter = () => {
           </div>
 
           <div className="text-center text-xs text-primary-foreground/40 pt-2">
-            © جميع الحقوق محفوظه لدى <span className="text-accent">سابر نيوز</span> 2023
+            © جميع الحقوق محفوظة لدى <span className="text-accent">القيادة 24</span> 2026
           </div>
         </div>
       </div>

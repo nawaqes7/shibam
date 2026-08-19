@@ -6,7 +6,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { decodeHtmlEntities } from "@/lib/htmlUtils";
 import ThemeToggle from "./ThemeToggle";
 import RadioPlayer from "./RadioPlayer";
-import saberLogo from "@/assets/saber-news-logo-transparent.png";
 
 interface SearchResult {
   id: string;
@@ -73,7 +72,7 @@ const SiteHeader = () => {
         <div className="flex items-center justify-between py-3">
           <div className="flex items-center gap-3">
             <Link to="/" className="flex items-center gap-2">
-              <img src={saberLogo} alt="سابر نيوز" className="h-10 md:h-12 w-auto" />
+              <span className="inline-flex items-center gap-2"><span className="grid h-10 w-10 place-items-center rounded-xl bg-accent text-lg font-black text-accent-foreground shadow-sm md:h-12 md:w-12">24</span><span className="text-xl font-black tracking-tight text-foreground md:text-2xl">القيادة <span className="text-accent">24</span></span></span>
             </Link>
             <span className="live-badge hidden sm:inline-flex">
               <span className="w-1.5 h-1.5 rounded-full bg-accent-foreground" />
@@ -127,7 +126,7 @@ const SiteHeader = () => {
                   type="text"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  placeholder="ابحث في سابر نيوز..."
+                  placeholder="ابحث في القيادة 24..."
                   className="w-full px-4 py-3 bg-secondary rounded-lg text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-primary/20"
                   autoFocus
                 />

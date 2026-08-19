@@ -24,7 +24,7 @@ const ShareButtons = ({ title, slug, articleId, author, description }: ShareButt
   const shareUrl = `${siteBase}/article/${articlePath}`;
   const authorLine = author ? `\n✍️ ${author}` : "";
   const descLine = description ? `\n${description.slice(0, 100)}` : "";
-  const shareText = `${title}${authorLine}${descLine}\n\n#سابر_نيوز`;
+  const shareText = `${title}${authorLine}${descLine}\n\n#القيادة_24`;
   const encodedUrl = encodeURIComponent(shareUrl);
   const encodedText = encodeURIComponent(shareText);
 

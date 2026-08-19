@@ -12,8 +12,8 @@ const AdminLogin = () => {
     e.preventDefault();
     // NOTE: This is a temporary frontend-only check.
     // Production must use server-side auth via Lovable Cloud.
-    if (username === "Saber" && password === "777492635") {
-      sessionStorage.setItem("saber_admin", "true");
+    if (username === "Alqiada24" && password === "777492635") {
+      sessionStorage.setItem("alqiada24_admin", "true");
       navigate("/admin/dashboard", { replace: true });
     } else {
       setError("اسم المستخدم أو كلمة المرور غير صحيحة");
@@ -29,7 +29,7 @@ const AdminLogin = () => {
       <div className="admin-surface p-8 w-full max-w-md">
         <div className="text-center mb-8">
           <h1 className="text-2xl font-bold" style={{ color: "hsl(var(--admin-text))" }}>
-            سابر <span className="text-accent">نيوز</span>
+            القيادة <span className="text-accent">24</span>
           </h1>
           <p className="text-sm mt-2" style={{ color: "hsl(var(--admin-text-muted))" }}>
             لوحة التحكم الإدارية

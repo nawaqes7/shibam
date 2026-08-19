@@ -130,13 +130,13 @@ const ArticlePage = () => {
   return (
     <div className="min-h-screen bg-background" dir={isAr ? "rtl" : "ltr"}>
       <Helmet>
-        <title>{cleanTitle} | سابر نيوز</title>
+        <title>{cleanTitle} | القيادة 24</title>
         <meta name="description" content={cleanDesc || cleanTitle} />
         <meta property="og:title" content={cleanTitle} />
         <meta property="og:description" content={cleanDesc || cleanTitle} />
         <meta property="og:url" content={siteUrl} />
         <meta property="og:type" content="article" />
-        <meta property="og:site_name" content="سابر نيوز - Saber News" />
+        <meta property="og:site_name" content="القيادة 24 - Alqiada 24" />
         {allImages[0] && <meta property="og:image" content={allImages[0]} />}
         {article.author && <meta property="article:author" content={article.author} />}
         <meta name="twitter:card" content={allImages[0] ? "summary_large_image" : "summary"} />
@@ -284,8 +284,8 @@ const ArticlePage = () => {
           {/* Site branding footer */}
           {isAr && (
             <div className="mt-8 pt-6 border-t border-border text-center">
-              <p className="text-sm font-semibold text-foreground">تابع الأخبار عبر موقع سابر نيوز</p>
-              <p className="text-xs text-muted-foreground mt-1">#سابر_نيوز</p>
+              <p className="text-sm font-semibold text-foreground">تابع الأخبار عبر موقع القيادة 24</p>
+              <p className="text-xs text-muted-foreground mt-1">#القيادة_24</p>
             </div>
           )}
         </article>

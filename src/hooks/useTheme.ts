@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 export function useTheme() {
   const [isDark, setIsDark] = useState(() => {
     if (typeof window === "undefined") return false;
-    const saved = localStorage.getItem("saber-theme");
+    const saved = localStorage.getItem("alqiada24-theme");
     if (saved) return saved === "dark";
     return window.matchMedia("(prefers-color-scheme: dark)").matches;
   });
@@ -15,7 +15,7 @@ export function useTheme() {
     } else {
       root.classList.remove("dark");
     }
-    localStorage.setItem("saber-theme", isDark ? "dark" : "light");
+    localStorage.setItem("alqiada24-theme", isDark ? "dark" : "light");
   }, [isDark]);
 
   return { isDark, toggle: () => setIsDark((d) => !d) };

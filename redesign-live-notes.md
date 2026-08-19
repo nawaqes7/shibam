@@ -1,0 +1,6 @@
+
+Public verification after redesign deploy: https://nawaqes7.github.io/shibam/ still rendered a blank viewport with no detected interactive elements in the browser, despite local dev rendering the redesigned page successfully. A second browser view confirmed the same blank state and saved HTML for asset inspection. This indicates the remaining issue is publication/cache/asset-path/runtime specific, not the React redesign itself.
+
+Final live verification at https://nawaqes7.github.io/shibam/?v=redesign2 after unregistering service workers and deleting caches: the redesigned page rendered successfully. Visible elements included the new header, logo, navigation, Arabic/English toggle, hero section, placeholder cards, latest-news section, dark-mode toggle, footer, and admin/archive links. The previous blank state was caused by the browser retaining the old published HTML/bundle; the fresh query-string load used the new /shibam/ assets and rendered correctly.
+
+Admin route verification: the correctly spelled URL https://nawaqes7.github.io/shibam/admin/login?v=redesign2 renders the login screen with username/password fields and a login button. A prior 404 check used a mistyped hostname (nawaq7.github.io), not the project hostname.

@@ -44,7 +44,7 @@ const Index = () => {
         <div className="bg-[#101b2d] px-4 py-2 text-xs text-slate-300">
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
             <span>الأربعاء، 19 أغسطس 2026</span>
-            <span className="hidden sm:inline">سابر نيوز — الخبر بدقة، والتحليل بعمق</span>
+            <span className="hidden sm:inline">القيادة 24 — الخبر بدقة، والتحليل بعمق</span>
             <Link to="/admin/login" className="font-semibold text-amber-300 hover:text-white">دخول الإدارة</Link>
           </div>
         </div>
@@ -54,7 +54,7 @@ const Index = () => {
             <button aria-label="فتح القائمة" className="rounded-xl p-2 text-slate-500 hover:bg-slate-100 lg:hidden dark:hover:bg-slate-800" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X size={22} /> : <Menu size={22} />}</button>
             <Link to="/" className="group flex items-center gap-3">
               <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#c9943e] text-xl font-black text-white shadow-lg shadow-amber-900/20">س</div>
-              <div><div className="text-2xl font-black tracking-tight text-[#10233c] dark:text-white">سابر <span className="text-[#c9943e]">نيوز</span></div><div className="text-[10px] font-bold uppercase tracking-[0.28em] text-slate-400">SABER NEWS</div></div>
+              <div><div className="text-2xl font-black tracking-tight text-[#10233c] dark:text-white">القيادة <span className="text-[#c9943e]">24</span></div><div className="text-[10px] font-bold uppercase tracking-[0.28em] text-slate-400">ALQIADA 24</div></div>
             </Link>
             <nav className={`${menuOpen ? "absolute inset-x-4 top-[76px] flex" : "hidden"} flex-col gap-1 rounded-2xl border border-slate-200 bg-white p-3 shadow-2xl lg:static lg:flex lg:flex-row lg:items-center lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none dark:border-slate-700 dark:bg-[#111c2c] lg:dark:bg-transparent`} aria-label="التنقل الرئيسي">
               {categories.slice(0, 6).map((category) => <button key={category} onClick={() => { setActiveCategory(category); setMenuOpen(false); }} className={`rounded-lg px-3 py-2 text-sm font-bold transition ${activeCategory === category ? "bg-[#10233c] text-white dark:bg-[#c9943e]" : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"}`}>{category}</button>)}
@@ -79,7 +79,7 @@ const Index = () => {
           <section className="mt-12 grid gap-4 border-y border-slate-200 py-6 sm:grid-cols-3 dark:border-slate-800"><div><div className="text-2xl font-black text-[#10233c] dark:text-white">{totalCount || "—"}</div><div className="mt-1 text-xs font-bold text-slate-500">قصة في الأرشيف</div></div><div><div className="text-2xl font-black text-[#c9943e]">24/7</div><div className="mt-1 text-xs font-bold text-slate-500">تغطية مستمرة</div></div><div><div className="text-2xl font-black text-[#10233c] dark:text-white">عربي</div><div className="mt-1 text-xs font-bold text-slate-500">منصة مستقلة بصوت واضح</div></div></section>
         </main>
 
-        <footer className="bg-[#101b2d] px-4 py-10 text-white"><div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 sm:flex-row sm:items-end"><div><div className="text-2xl font-black">سابر <span className="text-[#c9943e]">نيوز</span></div><p className="mt-2 max-w-sm text-sm leading-7 text-slate-400">نحو صحافة عربية أكثر وضوحًا، وأقرب إلى القارئ، وأبعد عن ضجيج العناوين.</p></div><div className="flex gap-5 text-sm font-bold text-slate-300"><Link to="/archive" className="hover:text-amber-300">الأرشيف</Link><Link to="/admin/login" className="hover:text-amber-300">الإدارة</Link><a href="mailto:hello@sabernews.app" className="hover:text-amber-300">تواصل معنا</a></div></div><div className="mx-auto mt-8 max-w-7xl border-t border-white/10 pt-5 text-xs text-slate-500">© 2026 سابر نيوز. جميع الحقوق محفوظة.</div></footer>
+        <footer className="bg-[#101b2d] px-4 py-10 text-white"><div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 sm:flex-row sm:items-end"><div><div className="text-2xl font-black">القيادة <span className="text-[#c9943e]">24</span></div><p className="mt-2 max-w-sm text-sm leading-7 text-slate-400">نحو صحافة عربية أكثر وضوحًا، وأقرب إلى القارئ، وأبعد عن ضجيج العناوين.</p></div><div className="flex gap-5 text-sm font-bold text-slate-300"><Link to="/archive" className="hover:text-amber-300">الأرشيف</Link><Link to="/admin/login" className="hover:text-amber-300">الإدارة</Link><a href="mailto:hello@nawaqes7.github.io/shibam" className="hover:text-amber-300">تواصل معنا</a></div></div><div className="mx-auto mt-8 max-w-7xl border-t border-white/10 pt-5 text-xs text-slate-500">© 2026 القيادة 24. جميع الحقوق محفوظة.</div></footer>
       </div>
     </ErrorBoundary>
   );

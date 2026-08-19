@@ -467,7 +467,7 @@ serve(async (req) => {
     for (const source of sources) {
       try {
         const response = await fetch(source.fetch_url, {
-          headers: { "User-Agent": "SaberNews/1.0" },
+          headers: { "User-Agent": "Alqiada24/1.0" },
           signal: AbortSignal.timeout(15000),
         });
         const text = await response.text();

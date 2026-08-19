@@ -42,13 +42,13 @@ const RadioPlayer = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const saved = localStorage.getItem("saber_radio_favorites");
+    const saved = localStorage.getItem("alqiada24_radio_favorites");
     if (saved) try { setFavorites(JSON.parse(saved)); } catch {}
   }, []);
 
   const saveFavorites = (fav: string[]) => {
     setFavorites(fav);
-    localStorage.setItem("saber_radio_favorites", JSON.stringify(fav));
+    localStorage.setItem("alqiada24_radio_favorites", JSON.stringify(fav));
   };
 
   const toggleFavorite = (id: string, e: React.MouseEvent) => {
@@ -66,7 +66,7 @@ const RadioPlayer = () => {
       if (data) {
         const mapped = data.map((s: any) => ({ ...s, stream_urls: Array.isArray(s.stream_urls) ? s.stream_urls : [] }));
         setStations(mapped);
-        const lastId = localStorage.getItem("saber_radio_last");
+        const lastId = localStorage.getItem("alqiada24_radio_last");
         if (lastId) { const found = mapped.find((s: RadioStation) => s.id === lastId); if (found) setCurrent(found); }
       }
     };
@@ -128,7 +128,7 @@ const RadioPlayer = () => {
 
   const handlePlay = (station: RadioStation) => {
     if (current?.id === station.id && playing) { audioRef.current?.pause(); setPlaying(false); return; }
-    setCurrent(station); localStorage.setItem("saber_radio_last", station.id); setPlaying(true); playStream(station, 0);
+    setCurrent(station); localStorage.setItem("alqiada24_radio_last", station.id); setPlaying(true); playStream(station, 0);
     supabase.from("radio_stations").update({ play_count: station.quality_score + 1 }).eq("id", station.id).then(() => {});
   };
 

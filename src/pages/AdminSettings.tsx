@@ -37,7 +37,7 @@ const AdminSettings = () => {
         </h2>
         <div>
           <label className="block text-sm mb-1.5" style={{ color: "hsl(var(--admin-text-muted))" }}>اسم الموقع</label>
-          <input className="admin-input" defaultValue="سابر نيوز" />
+          <input className="admin-input" defaultValue="القيادة 24" />
         </div>
         <div>
           <label className="block text-sm mb-1.5" style={{ color: "hsl(var(--admin-text-muted))" }}>اللغة الأساسية</label>

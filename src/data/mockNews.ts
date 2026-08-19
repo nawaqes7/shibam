@@ -36,7 +36,7 @@ export const mockArticles: Article[] = [
     description: "أعلنت قمة التقنية العالمية المنعقدة في دبي عن شراكات استراتيجية جديدة تهدف إلى تعزيز الابتكار في مجال الذكاء الاصطناعي وتطبيقاته في القطاعات الحيوية.",
     image: heroImg,
     category: "تكنولوجيا",
-    source: "سابر نيوز",
+    source: "القيادة 24",
     publishedAt: "منذ 15 دقيقة",
     isBreaking: true,
   },

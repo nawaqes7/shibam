@@ -4,7 +4,7 @@ import { ArrowLeftRight, Home, Settings } from "lucide-react";
 const AdminQuickAccess = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const isAdmin = sessionStorage.getItem("saber_admin") === "true";
+  const isAdmin = sessionStorage.getItem("alqiada24_admin") === "true";
 
   if (!isAdmin) return null;
 
