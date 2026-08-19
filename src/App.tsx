@@ -19,6 +19,7 @@ import AdminRadio from "./pages/AdminRadio";
 import AdminQuickAccess from "./components/AdminQuickAccess";
 import ArticlePage from "./pages/ArticlePage";
 import NewsArchive from "./pages/NewsArchive";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 const queryClient = new QueryClient();
 
@@ -29,12 +30,13 @@ const AdminGuard = ({ children }: { children: React.ReactNode }) => {
 };
 
 const App = () => (
+  <ErrorBoundary>
   <HelmetProvider>
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter basename="/">
+        <BrowserRouter basename={import.meta.env.BASE_URL}>
         <ScrollRestoration
           getKey={(location) => {
             // Same key for article pages → restore scroll on back
@@ -74,6 +76,7 @@ const App = () => (
     </TooltipProvider>
   </QueryClientProvider>
   </HelmetProvider>
+  </ErrorBoundary>
 );
 
 export default App;

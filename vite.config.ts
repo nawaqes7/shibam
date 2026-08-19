@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig(({ mode }) => ({
-  base: "/",
+  base: process.env.GITHUB_ACTIONS ? "/shibam/" : "/",
   server: {
     host: "::",
     port: 8080,

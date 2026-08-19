@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { isSupabaseConfigured, supabase } from "@/integrations/supabase/client";
 
 export interface DBArticle {
   id: string;
@@ -32,6 +32,12 @@ export function useArticles(language: string = "ar", page: number = 1) {
 
   const fetchArticles = useCallback(async () => {
     setLoading(true);
+    if (!isSupabaseConfigured) {
+      setArticles([]);
+      setTotalCount(0);
+      setLoading(false);
+      return;
+    }
     try {
       const from = (page - 1) * PAGE_SIZE;
       const to = from + PAGE_SIZE - 1;
@@ -74,6 +80,7 @@ export function useArticles(language: string = "ar", page: number = 1) {
 
   // Subscribe to realtime changes
   useEffect(() => {
+    if (!isSupabaseConfigured) return;
     const channelName = `articles-realtime-${language}-${page}`;
     const channel = supabase
       .channel(channelName)
@@ -91,6 +98,7 @@ export function useBreakingNews(language: string = "ar") {
   const [articles, setArticles] = useState<DBArticle[]>([]);
 
   useEffect(() => {
+    if (!isSupabaseConfigured) return;
     const fetch = async () => {
       const { data } = await supabase
         .from("articles")
