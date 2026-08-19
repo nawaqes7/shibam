@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes, Navigate, ScrollRestoration } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -37,16 +37,6 @@ const App = () => (
       <Toaster />
       <Sonner />
         <BrowserRouter basename={import.meta.env.BASE_URL}>
-        <ScrollRestoration
-          getKey={(location) => {
-            // Same key for article pages → restore scroll on back
-            // Unique key per index/archive page with params → preserve scroll per page/section combo
-            if (location.pathname.startsWith("/article/")) {
-              return "article-nav";
-            }
-            return location.pathname + location.search;
-          }}
-        />
         <AdminQuickAccess />
         <Routes>
           <Route path="/" element={<Index />} />
